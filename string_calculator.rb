@@ -8,7 +8,11 @@ class StringCalculator
       else
         numbers.split(Regexp.union(["\n", ","]))
       end
-    number_array.map(&:to_i).sum
+    number_array.sum do |number|
+      num = number.to_i
+      raise "negative numbers not allowed #{num}" if num.negative?
+      num
+    end
   end
 end
 
