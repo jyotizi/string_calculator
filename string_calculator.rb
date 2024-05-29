@@ -28,4 +28,9 @@ class TestStringCalculator < Test::Unit::TestCase
     assert_equal(6, @calculator.add("1,2\n3"))
     assert_equal(6, @calculator.add("1\n2\n3"))
   end
+
+  def test_custom_separator
+    assert_equal(3, @calculator.add("//;\n1;2"))
+  end
+
 end  
