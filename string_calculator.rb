@@ -1,8 +1,14 @@
 require 'test/unit'
 class StringCalculator
   def add(numbers)
-    numbers.gsub!("\n",',')
-    numbers.split(',').map(&:to_i).sum
+    separator , new_numbers = *numbers.scan(%r{^//(.+)\n(.*)}).flatten
+    number_array =
+      if separator && new_numbers
+        new_numbers.split(Regexp.union(["\n", separator]))
+      else
+        numbers.split(Regexp.union(["\n", ","]))
+      end
+    number_array.map(&:to_i).sum
   end
 end
 
