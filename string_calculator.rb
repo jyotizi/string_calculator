@@ -1,6 +1,7 @@
 require 'test/unit'
 class StringCalculator
   def add(numbers)
+    numbers.gsub!("\n",',')
     numbers.split(',').map(&:to_i).sum
   end
 end
@@ -25,6 +26,6 @@ class TestStringCalculator < Test::Unit::TestCase
   def test_newline_separator
     assert_equal(6, @calculator.add("1\n2,3"))
     assert_equal(6, @calculator.add("1,2\n3"))
-    assert_equal(0, @calculator.add("1\n2\n3"))
+    assert_equal(6, @calculator.add("1\n2\n3"))
   end
 end  
