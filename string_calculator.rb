@@ -21,4 +21,10 @@ class TestStringCalculator < Test::Unit::TestCase
   def test_multiple_numbers_string
     assert_equal(6, @calculator.add("1,5"))
   end
+
+  def test_newline_separator
+    assert_equal(6, @calculator.add("1\n2,3"))
+    assert_equal(6, @calculator.add("1,2\n3"))
+    assert_equal(0, @calculator.add("1\n2\n3"))
+  end
 end  
